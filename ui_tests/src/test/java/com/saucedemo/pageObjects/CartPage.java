@@ -28,7 +28,6 @@ public class CartPage extends ModernBasePage {
     private static final By CART_ITEM_ITEM_NAME_FIELD = By.className("inventory_item_name");
     private static final By CART_ITEM_DESCRIPTION_FIELD = By.className("inventory_item_desc");
     private static final By CART_ITEM_PRICE_FIELD = By.className("inventory_item_price");
-    private static final By REMOVE_CART_ITEM_BUTTON = By.xpath("//button[.='REMOVE']");
 
     public CartPage() {
     }
@@ -47,7 +46,6 @@ public class CartPage extends ModernBasePage {
         waitForOpen();
     }
 
-
     private static By getCardFieldLocator(String templateFieldName) {
         switch (templateFieldName) {
             case "quantity":
@@ -64,12 +62,12 @@ public class CartPage extends ModernBasePage {
     }
 
     @When("^The following products are (available|not available) on Cart page:$")
-    public void verifyJobsPresenceInSearchResults(String availability, DataTable jobsResultsData) {
+    public void verifyCart(String availability, DataTable jobsResultsData) {
         List<Map<String, String>> products = jobsResultsData.asMaps(String.class, String.class);
         List<WebElement> cartItems = getDriver().findElements(CART_ITEM_CONTAINER);
         LOG.debug("Original rows ({}):\n{}", cartItems.size(), getFormattedTableRows(cartItems));
         for (Map<String, String> product : products) {
-            List<WebElement> rows = getFilteredByJobDataJobCards(product);
+            List<WebElement> rows = getFilteredCartItems(product);
             String actualAvailability = rows.isEmpty() ? "not available" : "available";
             assertEquals(actualAvailability, availability,
                     String.format("'%s' should be '%s' in\n%s\nContext:\n%s",
@@ -80,13 +78,7 @@ public class CartPage extends ModernBasePage {
         }
     }
 
-    @When("^I click 'Checkout' button on Cart page$")
-    public CheckoutYourInformationPage clickCheckout() {
-        click(CHECKOUT_BUTTON);
-        return new CheckoutYourInformationPage();
-    }
-
-    public List<WebElement> getFilteredByJobDataJobCards(final Map<String, String> product) {
+    public List<WebElement> getFilteredCartItems(final Map<String, String> product) {
         List<WebElement> cartItems = getDriver().findElements(CART_ITEM_CONTAINER);
         LOG.debug("Original cart items ({}):\n{}", cartItems.size(), getFormattedTableRows(cartItems));
         List<WebElement> rows = new ArrayList<>(cartItems);
@@ -107,5 +99,11 @@ public class CartPage extends ModernBasePage {
             lastCheckedColumn = property;
         }
         return rows;
+    }
+
+    @When("^I click 'Checkout' button on Cart page$")
+    public CheckoutYourInformationPage clickCheckout() {
+        click(CHECKOUT_BUTTON);
+        return new CheckoutYourInformationPage();
     }
 }
