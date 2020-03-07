@@ -1,6 +1,7 @@
 package com.saucedemo.pageObjects;
 
 import com.saucedemo.ModernBasePage;
+import com.saucedemo.text.LoremIpsum;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import org.openqa.selenium.By;
@@ -8,6 +9,8 @@ import org.openqa.selenium.By;
 import javax.xml.crypto.Data;
 
 import static com.saucedemo.helpers.ElementsInteraction.*;
+import static com.saucedemo.pageObjects.GlobalSteps.getDynamicFieldValue;
+import static com.saucedemo.pageObjects.GlobalSteps.getDynamicLocationFieldValue;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class CheckoutYourInformationPage extends ModernBasePage {
@@ -36,17 +39,17 @@ public class CheckoutYourInformationPage extends ModernBasePage {
 
     @And("^I set '(.*)' as first name on Checkout your information page$")
     public void setFirstName(String firstName) {
-        sendKeys(FIRST_NAME_INPUT, firstName);
+        sendKeys(FIRST_NAME_INPUT, getDynamicFieldValue(firstName, LoremIpsum.getInstance().getFirstName()));
     }
 
     @And("^I set '(.*)' as last name on Checkout your information page$")
     public void setLastName(String lastName) {
-        sendKeys(LAST_NAME_INPUT, lastName);
+        sendKeys(LAST_NAME_INPUT, getDynamicFieldValue(lastName, LoremIpsum.getInstance().getLastName()));
     }
 
     @And("^I set '(.*)' as zip on Checkout your information page$")
     public void setZip(String zip) {
-        sendKeys(ZIP_INPUT, zip);
+        sendKeys(ZIP_INPUT, getDynamicLocationFieldValue(zip));
     }
 
     @And("^I click 'Continue' button on Checkout your information page$")

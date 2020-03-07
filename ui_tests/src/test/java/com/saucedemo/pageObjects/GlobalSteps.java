@@ -121,6 +121,4 @@ public class GlobalSteps {
             return getDynamicFieldValue(key);
         }
     }
-
-
 }
