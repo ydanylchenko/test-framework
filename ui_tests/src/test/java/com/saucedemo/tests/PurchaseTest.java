@@ -25,6 +25,9 @@ public class PurchaseTest {
         new CucumberHooks().afterTest(null);
     }
 
+    /**
+     * The good version of this test is available in purchaseAllTShirts.feature
+     */
     @Test
     public void purchaseAllTShirts() {
         LoginPage loginPage = new GlobalSteps().openStartPage();
