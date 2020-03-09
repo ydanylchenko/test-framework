@@ -1,5 +1,4 @@
-#Login as standard_user and purchase ALL the T-shirts.
-Feature: Purchase: One Product
+Feature: Purchase
 
   Background:
     Given I open start page
@@ -8,7 +7,7 @@ Feature: Purchase: One Product
     And I click 'Sign In' button on Sign in page
 
   @purchase
-  Scenario: Purchase '<product>' product
+  Scenario: Purchase all the T-shirts
     When I click 'ADD TO CART' button on 'Sauce Labs Bolt T-Shirt' product on Products page
     Then Cart contains '1' item on Header
     When I click 'ADD TO CART' button on 'Test.allTheThings() T-Shirt (Red)' product on Products page

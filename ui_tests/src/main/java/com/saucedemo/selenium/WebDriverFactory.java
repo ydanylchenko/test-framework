@@ -146,7 +146,7 @@ public class WebDriverFactory {
 
     public static byte[] captureScreenshot(Context context, WebDriver driver, String pageName) {
         String screenName = pageName == null ? "blankLandingPage" : pageName;
-        String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss-SSS"));
+        String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HHmmss-SSS"));
         String screenshotName = String.format("%s_%s.png", timestamp, screenName);
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         context.getScreenshots().put(screenshotName, screenshot);
