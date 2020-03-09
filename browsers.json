@@ -10,6 +10,7 @@
     }
   },
   "opera": {
+    "default": "latest",
     "versions": {
       "latest": {
         "image": "selenoid/opera:latest",
