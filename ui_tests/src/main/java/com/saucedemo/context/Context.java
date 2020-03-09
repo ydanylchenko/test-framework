@@ -19,7 +19,6 @@ public class Context {
     private static final Logger LOG = LoggerFactory.getLogger(Context.class);
     private Map<String, String> dataStore = new LinkedHashMap<>();
     private NavigableMap<String, byte[]> screenshots = new TreeMap<>();
-    private Platform currentPlatform;
     private boolean isMobile;
     private String scenarioName;
     private String pageName;
@@ -40,14 +39,6 @@ public class Context {
 
     public void setFeatureName(String featureName) {
         this.featureName = featureName;
-    }
-
-    public Platform getCurrentPlatform() {
-        return currentPlatform;
-    }
-
-    public void setCurrentPlatform(Platform platform) {
-        currentPlatform = platform;
     }
 
     public void printStore(Map store) {

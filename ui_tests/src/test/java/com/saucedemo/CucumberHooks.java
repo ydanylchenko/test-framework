@@ -1,7 +1,6 @@
 package com.saucedemo;
 
 import com.saucedemo.context.Context;
-import com.saucedemo.context.Platform;
 import com.saucedemo.selenium.WebDriverFactory;
 import com.saucedemo.text.LoremIpsum;
 import io.cucumber.java.After;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Arrays;
 
 import static com.saucedemo.selenium.SeleniumConfig.getConfig;
 
@@ -49,11 +47,13 @@ public class CucumberHooks {
         getContext().setFeatureName(scenario.getUri().toString().replaceAll(".*/", ""));
         getContext().setScenarioName(scenario.getName());
         getContext().setIsMobile(scenario.getSourceTagNames().contains("@mobile"));
+        beforeTest();
+    }
+
+    public void beforeTest() throws InterruptedException, MalformedURLException {
         LOG.info("Starting WebDriver");
         driver.set(WebDriverFactory.startBrowser(getContext()));
         LOG.info("WebDriver ready? {}", getDriver().getCurrentUrl().isEmpty());
-//        Verify that instances under test are up and running
-        LOG.info("Instances are under test: {}", Arrays.asList(Platform.values()));
         {
             String threadName = Thread.currentThread().getName();
             LOG.info("Thread name: " + threadName);
@@ -74,7 +74,7 @@ public class CucumberHooks {
     public void afterTest(Scenario scenario) throws IOException {
         LOG.info("Cucumber shutdown hooks are executed");
         try {
-            if (scenario.isFailed()) {
+            if (scenario != null && scenario.isFailed()) {
                 LOG.error("URL on witch test was failed {}", getDriver().getCurrentUrl());
                 String pageName = getContext().getPageName();
                 {

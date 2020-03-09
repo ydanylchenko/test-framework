@@ -1,6 +1,5 @@
 package com.saucedemo.pageObjects;
 
-import com.saucedemo.context.Platform;
 import com.saucedemo.text.LoremIpsum;
 import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebElement;
@@ -20,8 +19,7 @@ public class GlobalSteps {
     private static final Logger LOG = LoggerFactory.getLogger(GlobalSteps.class);
 
     @Given("^I open start page$")
-    public LoginPage openRecruitersHomePage() {
-        getContext().setCurrentPlatform(Platform.MAIN);
+    public LoginPage openStartPage() {
         getDriver().get(getConfig().getBaseUrl());
         return new LoginPage(true);
     }

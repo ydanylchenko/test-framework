@@ -73,8 +73,12 @@ public class CheckoutOverviewPage extends ModernBasePage {
     }
 
     @When("^The following products are (available|not available) on Checkout overview page:$")
-    public void verifyCart(String availability, DataTable jobsResultsData) {
-        List<Map<String, String>> products = jobsResultsData.asMaps(String.class, String.class);
+    public void verifyCart(String availability, DataTable dataTable) {
+        List<Map<String, String>> products = dataTable.asMaps(String.class, String.class);
+        verifyCart(availability, products);
+    }
+
+    public void verifyCart(String availability, List<Map<String, String>> products) {
         List<WebElement> cartItems = getDriver().findElements(CART_ITEM_CONTAINER);
         for (Map<String, String> product : products) {
             List<WebElement> rows = getFilteredCartItems(product);

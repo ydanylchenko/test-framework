@@ -18,4 +18,4 @@ We suggest using Rest Assured.
 
 We would like for you to describe in words or diagram how you would integrate the above scripts into a CI/CD environment.
 These can include integration with Cloud Based services or locally and describe why the choices made. 
-This test will be evaluated by the ydanylchenko Engineering team. If you're having any issues with the challenge, feel free to contact us. Good Luck!
+This test will be evaluated by the Engineering team. If you're having any issues with the challenge, feel free to contact us. Good Luck!
