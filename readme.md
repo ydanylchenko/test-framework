@@ -12,7 +12,7 @@ This is selenium based UI test automation framework for both member and recruite
 
 #### CI Environment
 
-1. [Docker](https://www.docker.com/) - is used:
+1. [Docker](https://www.docker.com/) - is used to:
     1. spin up [Selenoid](https://aerokube.com/selenoid/) - Selenium Grid
     1. executed tests
 
