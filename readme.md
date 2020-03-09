@@ -61,9 +61,14 @@ After that you will be able to execute tests in the same way as in [Fully local]
 ### Reporting
 
 Generated reports are stored in the following locations:
-* cucumber report: /ui_tests/target/cucumber/index.html
-* cucumber timeline report: /ui_tests/target/cucumberTimeline/index.html
+* cucumber report: _ui_tests/target/cucumber/index.html_
+* cucumber timeline report: _ui_tests/target/cucumberTimeline/index.html_
 The better implementation of reports is available on CI with [cucumber-reports](https://plugins.jenkins.io/cucumber-reports/) plugin.  
+
+### Screenshots capture
+
+Set _selenium.browser.enableScreenShotsCapture_ flag to _true_ in order to capture screenshots on open of page objects.
+They will be stored in: _ui_tests/target/features_ folder
 
 ### Libraries
 

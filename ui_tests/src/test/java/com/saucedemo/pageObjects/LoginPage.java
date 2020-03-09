@@ -44,6 +44,7 @@ public class LoginPage extends ModernBasePage {
     @And("^I click 'Sign In' button on Sign in page$")
     public ProductsPage clickSignInButton() {
         click(LOGIN_BUTTON);
+        new Header(true);
         return new ProductsPage(true);
     }
 }

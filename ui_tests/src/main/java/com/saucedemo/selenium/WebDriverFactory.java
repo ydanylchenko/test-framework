@@ -44,8 +44,6 @@ public class WebDriverFactory {
         Browser browser = Browser.getByName(getConfig().getBrowser());
         WebDriver webDriver;
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        Wait for an email to be retrieved can take up to 360 seconds (6 minutes)
-        capabilities.setCapability("sessionTimeout", "8m");
         capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         capabilities.setCapability("ignore-certificate-errors", true);
@@ -144,12 +142,11 @@ public class WebDriverFactory {
         }
     }
 
-    public static byte[] captureScreenshot(Context context, WebDriver driver, String pageName) {
+    public static void captureScreenshot(Context context, WebDriver driver, String pageName) {
         String screenName = pageName == null ? "blankLandingPage" : pageName;
         String timestamp = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HHmmss-SSS"));
         String screenshotName = String.format("%s_%s.png", timestamp, screenName);
         byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         context.getScreenshots().put(screenshotName, screenshot);
-        return screenshot;
     }
 }

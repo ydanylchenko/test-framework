@@ -1,7 +1,0 @@
-Please select an option
-None
-Secret
-Secret with Polygraph
-Top Secret
-Top Secret with Polygraph
-Government Background Check

@@ -1,6 +1,0 @@
-Please select an option
-Less than 5 years
-5 - 7 years
-8 - 10 years
-11 - 15 years
-15+ years

@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 /**
  * Create one test to get weather using Open Weather API in the city of London: http://openweathermap.org/current
  */
-@Test(groups = {"weather"})
+@Test
 public class WeatherByCityNameTest {
     private RequestSpecification requestSpecification;
 

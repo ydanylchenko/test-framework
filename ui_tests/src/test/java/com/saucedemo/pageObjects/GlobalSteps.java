@@ -69,7 +69,7 @@ public class GlobalSteps {
         return String.format(partsMap, parts);
     }
 
-    public static String getFormattedTableRows(List<WebElement> rows) {
+    public static String getFormattedItems(List<WebElement> rows) {
         List<String> formattedRows = rows.stream()
                 .map(row -> (Objects.requireNonNull(row.getAttribute("innerText"))
                         .replaceAll("\t\n", "\t")
@@ -97,7 +97,6 @@ public class GlobalSteps {
         } else {
             if (!getContext().getDataStore().containsKey(key)) {
                 String part = key.split("(\\W)")[0];
-                String id = "id";
                 String city = "city";
                 String state = "state";
                 String fullState = "fullState";

@@ -25,7 +25,6 @@ public class CucumberHooks {
     static {
         LOG.info("Creating Text Generator");
         LOG.info("Text Generator ready? {}", !LoremIpsum.getInstance().getFirstName().isEmpty());
-        LOG.info("Setting up Emails Reader");
     }
 
     /**

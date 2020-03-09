@@ -12,10 +12,9 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.saucedemo.CucumberHooks.getContext;
 import static com.saucedemo.CucumberHooks.getDriver;
 import static com.saucedemo.helpers.ElementsInteraction.*;
-import static com.saucedemo.pageObjects.GlobalSteps.getFormattedTableRows;
+import static com.saucedemo.pageObjects.GlobalSteps.getFormattedItems;
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 import static org.testng.Assert.assertEquals;
 
@@ -65,22 +64,17 @@ public class CartPage extends ModernBasePage {
     public void verifyCart(String availability, DataTable jobsResultsData) {
         List<Map<String, String>> products = jobsResultsData.asMaps(String.class, String.class);
         List<WebElement> cartItems = getDriver().findElements(CART_ITEM_CONTAINER);
-        LOG.debug("Original rows ({}):\n{}", cartItems.size(), getFormattedTableRows(cartItems));
         for (Map<String, String> product : products) {
             List<WebElement> rows = getFilteredCartItems(product);
             String actualAvailability = rows.isEmpty() ? "not available" : "available";
             assertEquals(actualAvailability, availability,
-                    String.format("'%s' should be '%s' in\n%s\nContext:\n%s",
-                            product,
-                            availability,
-                            getFormattedTableRows(cartItems),
-                            getContext().getDataStore()));
+                    String.format("'%s' should be '%s' in\n%s", product, availability, getFormattedItems(cartItems)));
         }
     }
 
     public List<WebElement> getFilteredCartItems(final Map<String, String> product) {
         List<WebElement> cartItems = getDriver().findElements(CART_ITEM_CONTAINER);
-        LOG.debug("Original cart items ({}):\n{}", cartItems.size(), getFormattedTableRows(cartItems));
+        LOG.debug("Original cart items ({}):\n{}", cartItems.size(), getFormattedItems(cartItems));
         List<WebElement> rows = new ArrayList<>(cartItems);
         String lastCheckedColumn = null;
         for (String property : product.keySet()) {
@@ -95,7 +89,7 @@ public class CartPage extends ModernBasePage {
                         .collect(Collectors.toList());
             }
             LOG.info("{} remains after filtration by '{}'='{}':\n{}", rows.size(), property, value,
-                    getFormattedTableRows(rows));
+                    getFormattedItems(rows));
             lastCheckedColumn = property;
         }
         return rows;
@@ -104,6 +98,6 @@ public class CartPage extends ModernBasePage {
     @When("^I click 'Checkout' button on Cart page$")
     public CheckoutYourInformationPage clickCheckout() {
         click(CHECKOUT_BUTTON);
-        return new CheckoutYourInformationPage();
+        return new CheckoutYourInformationPage(true);
     }
 }

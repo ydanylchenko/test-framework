@@ -76,7 +76,6 @@ public class Context {
             } else {
                 LOG.debug("{} folder already exists", outputDirectory);
             }
-            outputDirectory = outputDirectory;
         }
         return outputDirectory;
     }

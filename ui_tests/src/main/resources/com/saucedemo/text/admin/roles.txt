@@ -1,5 +1,0 @@
-Offshore Agent
-Offshore Admin
-US Superuser
-Customer Service
-US Non-Superuser
