@@ -48,7 +48,7 @@ docker-compose pull
 ```
 In order to execute all the tests:
 ```
-docker-compose run tests mvn clean install -Dselenium.browser.isGrid=true-DparallelTestsCount=7
+docker-compose run tests mvn clean install -Dselenium.browser.isGrid=true -DparallelTestsCount=7
 docker-compose down
 ```
 * **Mixed** In order to execute tests from local environment using selenium grid.
